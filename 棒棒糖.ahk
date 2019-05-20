@@ -1,4 +1,4 @@
-﻿#IfWinActive,ahk_class D3 Main Window Class 
+#IfWinActive,ahk_class D3 Main Window Class 
 #SingleInstance force ;只能启动一个ahk程序实例，防止重复启动
 
 SetKeyDelay, 50
