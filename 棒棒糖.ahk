@@ -7,7 +7,7 @@ SetMouseDelay, 50
 masterFlag=0  ;宏控制变量
 clickFlag=0 ;控制左键连点的变量
 
-$MButton::  ;鼠标中键为宏开关键
+$MButton::  ;鼠标中键为宏开关键，可修改为其它键
 { 
 	if(masterFlag=0){
 		masterFlag := 1
@@ -25,12 +25,12 @@ $MButton::  ;鼠标中键为宏开关键
 	else 
 	{
 		SetTimer, MouseLButton, 50         ;左键连点计时器，会自动拾取
-		SetTimer, Lollipop, 50         ;
+		SetTimer, Lollipop, 50             ;棒棒糖相关的
 	}
 }
 Return 
 
-$d::  ;手动开黑人后，自动开罩子
+$d::  ;按d键手动开黑人后，自动开罩子
 { 
     send d
 	if (masterFlag=1) 
@@ -43,7 +43,7 @@ $d::  ;手动开黑人后，自动开罩子
 }
 Return 
 
-$XButton1::  ;开关鼠标连点
+$XButton1::  ;开关鼠标连点，键时鼠标第四键，可修改
 { 
 	clickFlag := !clickFlag
 }
