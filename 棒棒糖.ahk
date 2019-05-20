@@ -32,14 +32,14 @@ Return
 
 $d::  ;手动开黑人后，自动开罩子
 { 
+    send d
 	if (masterFlag=1) 
 	{
 		clickFlag := 1         ;开启黑人后启动左键连点
-		send d
 		sleep 600
 		send d
 		SetTimer, closeClick, -20000   ;黑人结束后关闭连点
-	}	
+    }
 }
 Return 
 
