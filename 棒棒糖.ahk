@@ -1,6 +1,16 @@
 #IfWinActive,ahk_class D3 Main Window Class 
 #SingleInstance force ;只能启动一个ahk程序实例，防止重复启动
 
+/* 
+键位 
+Q 黑洞 
+W 黑人 
+E 魔法武器 
+F 风暴护甲 
+鼠标左键 奥数洪流 
+鼠标右键 传送 
+*/ 
+
 SetKeyDelay, 50
 SetMouseDelay, 50
 
@@ -30,14 +40,14 @@ $MButton::  ;鼠标中键为宏开关键，可修改为其它键
 }
 Return 
 
-$d::  ;按d键手动开黑人后，自动开罩子
+$W::  ;按d键手动开黑人后，自动开罩子
 { 
-    send d
+    send W
 	if (masterFlag=1) 
 	{
 		clickFlag := 1         ;开启黑人后启动左键连点
 		sleep 600
-		send d
+		send W
 		SetTimer, closeClick, -20000   ;黑人结束后关闭连点
     }
 }
@@ -57,7 +67,7 @@ Return
 
 ~Enter::  ;回车打字关闭宏
 ~T::   ;按T回城关闭宏
-~E::   ;按E查看技能关闭宏
+~S::   ;按S查看技能关闭宏
 ~B::   ;按B查看装备关闭宏
 ~M::   ;按M查看悬赏关闭宏
 {
@@ -81,7 +91,7 @@ Lollipop:
 	
 	if (scolor = 1)
 	{
-		send s ;s为变身后无脑使用的寒冰轰击的快捷键，可自行修改
+		send Q ;s为变身后无脑使用的寒冰轰击的快捷键，可自行修改
 	}
 
     if (colorH = 0x0824608) ;如果死亡，自动停止左键连点
@@ -93,9 +103,9 @@ Lollipop:
 	if (colorB = 0xFFFFFF)           ;判断第一个buff那里是否是白色的（棒棒糖buff20层，那里为白色
 	{
 		clickFlag := 1
-		send d ;d为变身的快捷键，可自行修改
+		send W ;d为变身的快捷键，可自行修改
 		sleep 600 ;延迟600ms，可自行修改
-		send d ;d为变身黑人后罩子的快捷键，可自行修改
+		send W ;d为变身黑人后罩子的快捷键，可自行修改
 		SetTimer, closeClick, -20000
 	}
 	return
