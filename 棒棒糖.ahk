@@ -4,8 +4,8 @@
 SetKeyDelay, 50
 SetMouseDelay, 50
 
-masterFlag=0  ;宏控制变量
-clickFlag=0 ;控制左键连点的变量
+masterFlag = 0  ;宏控制变量
+clickFlag = 0 ;控制左键连点的变量
 
 $MButton::  ;鼠标中键为宏开关键，可修改为其它键
 { 
@@ -59,11 +59,11 @@ Return
 ~T::   ;按T回城关闭宏
 ~E::   ;按E查看技能关闭宏
 ~B::   ;按B查看装备关闭宏
-~M::  ;按M查看悬赏关闭宏
+~M::   ;按M查看悬赏关闭宏
 {
 	SetTimer, MouseLButton, off  ;关闭左键连点计时器，off不可改动
 	SetTimer, Lollipop, off  ;关闭
-	masterFlag:=0
+	masterFlag := 0
 }
 Return
 
@@ -83,6 +83,11 @@ Lollipop:
 	{
 		send s ;s为变身后无脑使用的寒冰轰击的快捷键，可自行修改
 	}
+
+    if (colorH = 0x0824608) ;如果死亡，自动停止左键连点
+    {
+        clickFlag := 0
+    }
 
 	PixelGetColor, colorB, 691, 949
 	if (colorB = 0xFFFFFF)           ;判断第一个buff那里是否是白色的（棒棒糖buff20层，那里为白色
