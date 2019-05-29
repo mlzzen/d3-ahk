@@ -40,14 +40,14 @@ $MButton::  ;鼠标中键为宏开关键，可修改为其它键
 }
 Return 
 
-$W::  ;按d键手动开黑人后，自动开罩子
+$2::  ;按d键手动开黑人后，自动开罩子
 { 
-    send W
+    send 2
 	if (masterFlag=1) 
 	{
 		clickFlag := 1         ;开启黑人后启动左键连点
 		sleep 600
-		send W
+		send 2
 		SetTimer, closeClick, -20000   ;黑人结束后关闭连点
     }
 }
@@ -91,7 +91,7 @@ Lollipop:
 	
 	if (scolor = 1)
 	{
-		send Q ;s为变身后无脑使用的寒冰轰击的快捷键，可自行修改
+		send 1 ;s为变身后无脑使用的寒冰轰击的快捷键，可自行修改
 	}
 
     if (colorH = 0x0824608) ;如果死亡，自动停止左键连点
@@ -103,9 +103,9 @@ Lollipop:
 	if (colorB = 0xFFFFFF)           ;判断第一个buff那里是否是白色的（棒棒糖buff20层，那里为白色
 	{
 		clickFlag := 1
-		send W ;d为变身的快捷键，可自行修改
+		send 2 ;d为变身的快捷键，可自行修改
 		sleep 600 ;延迟600ms，可自行修改
-		send W ;d为变身黑人后罩子的快捷键，可自行修改
+		send 2 ;d为变身黑人后罩子的快捷键，可自行修改
 		SetTimer, closeClick, -20000
 	}
 	return
