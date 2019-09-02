@@ -33,49 +33,49 @@ clickFlag = 0 ;控制左键连点的变量
 
 $MButton::  ;鼠标中键为宏开关键，可修改为其它键
 { 
-	if(masterFlag=0){
-		masterFlag := 1
-		clickFlag := 1
-	}else{
-		masterFlag := 0
-		clickFlag := 0
-	}
+    if(masterFlag=0){
+        masterFlag := 1
+        clickFlag := 1
+    }else{
+        masterFlag := 0
+        clickFlag := 0
+    }
 
-	if (masterFlag=0) 
-	{
-		SetTimer, MouseLButton, off  ;关闭左键连点计时器，off不可改动
-		SetTimer, Lollipop, off  ;关闭
-	}
-	else 
-	{
-		SetTimer, MouseLButton, 50         ;左键连点计时器，会自动拾取
-		SetTimer, Lollipop, 50             ;棒棒糖相关的
-	}
+    if (masterFlag=0) 
+    {
+        SetTimer, MouseLButton, off  ;关闭左键连点计时器，off不可改动
+        SetTimer, Lollipop, off  ;关闭
+    }
+    else 
+    {
+        SetTimer, MouseLButton, 50         ;左键连点计时器，会自动拾取
+        SetTimer, Lollipop, 50             ;棒棒糖相关的
+    }
 }
 Return 
 
 $2::  ;按d键手动开黑人后，自动开罩子
 { 
     send 2
-	if (masterFlag=1) 
-	{
-		clickFlag := 1         ;开启黑人后启动左键连点
-		sleep 600
-		send 2
-		SetTimer, closeClick, -20000   ;黑人结束后关闭连点
+    if (masterFlag=1) 
+    {
+        clickFlag := 1         ;开启黑人后启动左键连点
+        sleep 600
+        send 2
+        SetTimer, closeClick, -20000   ;黑人结束后关闭连点
     }
 }
 Return 
 
 $XButton1::  ;开关鼠标连点，键时鼠标第四键，可修改
 { 
-	clickFlag := !clickFlag
+    clickFlag := !clickFlag
 }
 Return 
 
 closeClick:  ;开关鼠标连点
 { 
-	clickFlag := 0
+    clickFlag := 0
 }
 Return 
 
@@ -85,44 +85,44 @@ Return
 ~B::   ;按B查看装备关闭宏
 ~M::   ;按M查看悬赏关闭宏
 {
-	SetTimer, MouseLButton, off  ;关闭左键连点计时器，off不可改动
-	SetTimer, Lollipop, off  ;关闭
-	masterFlag := 0
+    SetTimer, MouseLButton, off  ;关闭左键连点计时器，off不可改动
+    SetTimer, Lollipop, off  ;关闭
+    masterFlag := 0
 }
 Return
 
 MouseLButton:   ;左键连点计时器设置
 {
-	if(clickFlag = 1){
-		Click    ;点击鼠标左键，对应主要技能
-	}
+    if(clickFlag = 1){
+        Click    ;点击鼠标左键，对应主要技能
+    }
 }
 
 Lollipop:
 {
-	PixelGetColor, colorH, 848, 1034
-	scolor := SubStr(colorH, 3, 1)
-	
-	if (scolor = 1)
-	{
-		send 1 ;s为变身后无脑使用的寒冰轰击的快捷键，可自行修改
-	}
+    PixelGetColor, colorH, 848, 1034
+    scolor := SubStr(colorH, 3, 1)
+    
+    if (scolor = 1)
+    {
+        send 1 ;s为变身后无脑使用的寒冰轰击的快捷键，可自行修改
+    }
 
     if (colorH = 0x0824608) ;如果死亡，自动停止左键连点
     {
         clickFlag := 0
     }
 
-	PixelGetColor, colorB, 691, 949
-	if (colorB = 0xFFFFFF)           ;判断第一个buff那里是否是白色的（棒棒糖buff20层，那里为白色
-	{
-		clickFlag := 1
-		send 2 ;d为变身的快捷键，可自行修改
-		sleep 600 ;延迟600ms，可自行修改
-		send 2 ;d为变身黑人后罩子的快捷键，可自行修改
-		SetTimer, closeClick, -20000
-	}
-	return
+    PixelGetColor, colorB, 691, 949
+    if (colorB = 0xFFFFFF)           ;判断第一个buff那里是否是白色的（棒棒糖buff20层，那里为白色
+    {
+        clickFlag := 1
+        send 2 ;d为变身的快捷键，可自行修改
+        sleep 600 ;延迟600ms，可自行修改
+        send 2 ;d为变身黑人后罩子的快捷键，可自行修改
+        SetTimer, closeClick, -20000
+    }
+    return
 }
 
 ~=::Pause  ;宏暂停或继续

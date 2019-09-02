@@ -18,29 +18,29 @@ tempMove := 1
 
 $MButton::  ;鼠标中键为宏开关键，可修改为其它键
 { 
-	if(masterFlag=0){
-		masterFlag = 1
+    if(masterFlag=0){
+        masterFlag = 1
         tianQianFlag = 1 
-		clickFlag = 1
-		warriorFlag = 1
-	}else{
-		masterFlag = 0
+        clickFlag = 1
+        warriorFlag = 1
+    }else{
+        masterFlag = 0
         tianQianFlag = 0
-		warriorFlag = 0
-	}
+        warriorFlag = 0
+    }
 
-	if (masterFlag=0) 
-	{
-		SetTimer, TianQian, off  ;关闭
-		SetTimer, MouseLButton, off
-		SetTimer, Warrior, off
-	}
-	else 
-	{
-		SetTimer, TianQian, 300
-		SetTimer, MouseLButton, 50
-		SetTimer, Warrior, 50
-	}
+    if (masterFlag=0) 
+    {
+        SetTimer, TianQian, off  ;关闭
+        SetTimer, MouseLButton, off
+        SetTimer, Warrior, off
+    }
+    else 
+    {
+        SetTimer, TianQian, 300
+        SetTimer, MouseLButton, 50
+        SetTimer, Warrior, 50
+    }
 }
 Return 
 
@@ -48,45 +48,45 @@ $1::  ;按1键跑马后 停止自动天谴循环直到跑马结束
 { 
     Send 1
     tianQianFlag = 0
-	;上马后 鼠标连点 改为强制移动
-	tempMove := forceMove
-	forceMove := 1
+    ;上马后 鼠标连点 改为强制移动
+    tempMove := forceMove
+    forceMove := 1
     SetTimer, openTianQian, -2000   ;跑马完自动开启天谴
 }
 Return 
 
 $XButton1::  ;开关鼠标连点，键时鼠标第四键，可修改
 { 
-	clickFlag = !clickFlag
+    clickFlag = !clickFlag
 }
 Return 
 
 closeClick:  ;开关鼠标连点
 { 
-	clickFlag = 0
+    clickFlag = 0
 }
 Return 
 
 ; 开启天谴
 openTianQian:
 { 
-	tianQianFlag = 1
-	forceMove := tempMove
+    tianQianFlag = 1
+    forceMove := tempMove
     Return 
 }
 
 MouseLButton:   ;左键连点计时器设置
 {
-	if(clickFlag = 1){
-		if(forceMove = 1)
-		{
-			send h   ;点击强制移动键
-		}
-		else
-		{
-			Click
-		}
-	}
+    if(clickFlag = 1){
+        if(forceMove = 1)
+        {
+            send h   ;点击强制移动键
+        }
+        else
+        {
+            Click
+        }
+    }
 }
 Return
 
@@ -97,9 +97,9 @@ Return
 ~B::   ;按B查看装备关闭宏
 ~M::   ;按M查看悬赏关闭宏
 {
-	SetTimer, TianQian, off  ;关闭
-	SetTimer, MouseLButton, off  ;关闭
-	masterFlag = 0
+    SetTimer, TianQian, off  ;关闭
+    SetTimer, MouseLButton, off  ;关闭
+    masterFlag = 0
 }
 Return
 
@@ -118,10 +118,10 @@ return
 ;勇士变身连点
 Warrior:
 {
-	if(warriorFlag = 1)
-	{
-		Click, , right
-	}
+    if(warriorFlag = 1)
+    {
+        Click, , right
+    }
 
 }
 return
@@ -129,14 +129,14 @@ return
 ;切换 强制移动与左键连点
 Shift::
 {
-	if(forceMove = 1)
-	{
-		forceMove = 0
-	}
-	else
-	{
-		forceMove = 1
-	}
+    if(forceMove = 1)
+    {
+        forceMove = 0
+    }
+    else
+    {
+        forceMove = 1
+    }
 }
 return
 

@@ -13,45 +13,45 @@ clickFlag := 0
 
 $MButton::  ;鼠标中键为宏开关键，可修改为其它键
 { 
-	if(masterFlag=0){
-		masterFlag = 1
+    if(masterFlag=0){
+        masterFlag = 1
         autoClickFlag = 1 
-		clickFlag = 1
-	}else{
-		masterFlag = 0
+        clickFlag = 1
+    }else{
+        masterFlag = 0
         autoClickFlag = 0
-	}
+    }
 
-	if (masterFlag=0) 
-	{
-		SetTimer, ReleasesSkills, off  ;关闭
-		SetTimer, MouseLButton, off
-	}
-	else 
-	{
-		SetTimer, ReleasesSkills, 1000
-		SetTimer, MouseLButton, 50
-	}
+    if (masterFlag=0) 
+    {
+        SetTimer, ReleasesSkills, off  ;关闭
+        SetTimer, MouseLButton, off
+    }
+    else 
+    {
+        SetTimer, ReleasesSkills, 1000
+        SetTimer, MouseLButton, 50
+    }
 }
 Return 
 
 $XButton1::  ;开关鼠标连点，键时鼠标第四键，可修改
 { 
-	clickFlag = !clickFlag
+    clickFlag = !clickFlag
 }
 Return 
 
 closeClick:  ;开关鼠标连点
 { 
-	clickFlag = 0
+    clickFlag = 0
 }
 Return 
 
 MouseLButton:   ;左键连点计时器设置
 {
-	if(clickFlag = 1){
+    if(clickFlag = 1){
         send h   ;点击强制移动键
-	}
+    }
 }
 Return
 
@@ -62,9 +62,9 @@ Return
 ~B::   ;按B查看装备关闭宏
 ~M::   ;按M查看悬赏关闭宏
 {
-	SetTimer, ReleasesSkills, off  ;关闭
-	SetTimer, MouseLButton, off  ;关闭
-	masterFlag = 0
+    SetTimer, ReleasesSkills, off  ;关闭
+    SetTimer, MouseLButton, off  ;关闭
+    masterFlag = 0
 }
 Return
 
