@@ -2,6 +2,13 @@
 #SingleInstance force ;只能启动一个ahk程序实例，防止重复启动
 
 
+/*
+1键勇士
+2-4 挑衅 律法 天谴
+左键 回怒气技能
+右键 跑马
+*/
+
 SetKeyDelay, 50
 SetMouseDelay, 50
 ;宏控制变量
@@ -44,9 +51,9 @@ $MButton::  ;鼠标中键为宏开关键，可修改为其它键
 }
 Return 
 
-$1::  ;按1键跑马后 停止自动天谴循环直到跑马结束
+RButton::  ;按右键跑马后 停止自动天谴循环直到跑马结束
 { 
-    Send 1
+    Click,, right
     tianQianFlag = 0
     ;上马后 鼠标连点 改为强制移动
     tempMove := forceMove
@@ -120,7 +127,7 @@ Warrior:
 {
     if(warriorFlag = 1)
     {
-        Click, , right
+        send 1
     }
 
 }
@@ -139,5 +146,3 @@ Shift::
     }
 }
 return
-
-~=::Pause  ;宏暂停或继续
