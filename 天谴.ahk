@@ -58,7 +58,7 @@ RButton::  ;按右键跑马后 停止自动天谴循环直到跑马结束
     ;上马后 鼠标连点 改为强制移动
     tempMove := forceMove
     forceMove := 1
-    SetTimer, openTianQian, -2000   ;跑马完自动开启天谴
+    SetTimer, openTianQian, -3000   ;跑马完自动开启天谴
 }
 Return 
 
