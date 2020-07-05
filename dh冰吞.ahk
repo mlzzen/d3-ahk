@@ -32,13 +32,8 @@ CheckThreeState:
     state := GetKeyState("3", "P")
     If (state = 1)
     {
-        SetTimer, ReleaseOne, 1500
         ReleaseSkills()
-    } else
-    {
-        SetTimer, ReleaseOne, off
     }
-    
 }
 return
 
@@ -52,5 +47,10 @@ return
 
 ReleaseOne:
 {
-    Send 1
+    state := GetKeyState("3", "P")
+    If (state = 1)
+    {
+        Send 1
+    }
+    
 }
