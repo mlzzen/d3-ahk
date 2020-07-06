@@ -11,6 +11,8 @@
 
 ; 使用方法，按鼠标中键启动宏，再按一次关闭宏。按住3开始旋转
 masterFlag := 0  
+; 1为进入烟雾弹状态，0为未进入烟雾弹状态，为1的时候将不会按追踪箭
+smokeBombStatus := 0
 
 ;监听鼠标中键，按下中键则会执行大括号里面的程序
 $MButton::
@@ -25,10 +27,13 @@ $MButton::
         masterFlag = 1
         SetTimer, CheckThreeState, 300
         SetTimer, ReleaseOne, 1500
+        ;4秒放一次烟雾弹
+        SetTimer, ReleaseSmokeBomb, 6000
     }else{
         masterFlag = 0
         SetTimer, CheckThreeState, off
         SetTimer, ReleaseOne, off
+        SetTimer, ReleaseSmokeBomb, off
     }
 }
 Return 
@@ -48,7 +53,6 @@ return
 ;按一次2，4，右键
 ReleaseSkills()
 {
-    Send 2
     Send 4
     Click, Right
 }
@@ -59,9 +63,29 @@ return
 ;   否则啥也不做。
 ReleaseOne:
 {
+    ;获取3号键的状态，如果是按下的情况，且烟雾弹状态为0
+    ;   则按1号键发射追踪箭
     state := GetKeyState("3", "P")
-    If (state = 1)
+    If (state = 1 && smokeBombStatus = 0)
     {
         Send 1
     }
+}
+
+; 按2号键释放烟雾弹，并把烟雾弹状态改为1，1秒后重置为0
+ReleaseSmokeBomb:
+{
+    state := GetKeyState("3", "P")
+    If (state = 1)
+    {
+        Send 2
+        smokeBombStatus = 1
+        SetTimer, SetSmokeBombStatusZero, -1000
+    }
+}
+
+;把烟雾弹状态置为0
+SetSmokeBombStatusZero:
+{
+    smokeBombStatus = 0
 }
